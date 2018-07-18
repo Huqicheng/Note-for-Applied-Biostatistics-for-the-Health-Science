@@ -1,7 +1,7 @@
 Ch1. Introduction to Biostatistics
 ==============================
 
-## 1.1 What is Biostatistics?  Page 1
+## 1.1 What is Biostatistics? (Page 1)
 
 Definition:
 
@@ -13,7 +13,7 @@ Purpose:
     Gather data taht can be used to provide honest information about unanswered biomedical questions.
     
     
-## 1.2 Popolations, Samples, and Statistics      Page 2-9
+## 1.2 Popolations, Samples, and Statistics      (Page 2-9)
 
 <strong>Target Population: </strong> the population that is being studied in research.
 
@@ -21,7 +21,7 @@ Purpose:
 
 <strong>Statistics: </strong> the science of describing populations in the presence of uncertainty.
 
-#### 1.2.1 The Basic Biostatistical Terminology    Page 3-5
+#### 1.2.1 The Basic Biostatistical Terminology    (Page 3-5)
 
 target population
 
@@ -88,7 +88,15 @@ statistical model
     relates the response variable to the explanatory variables.
     
 
+#### 1.2.2 Biomedical Studies
 
+Protocols:
+forward looking studying what will happen in the future; what has already occurred; based on a cohort of subjects having similar characteristics.
 
+<strong>
+cohort study, prospective study, retrospective study, case-control study, longitudinal study, cross-sectional study, blinded study, clinical trial, randomized controlled study;
+</strong>
+
+#### 1.2.3 
 
     
