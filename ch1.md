@@ -88,7 +88,7 @@ statistical model
     relates the response variable to the explanatory variables.
     
 
-#### 1.2.2 Biomedical Studies
+#### 1.2.2 Biomedical Studies (Page 5-7)
 
 Protocols:
 forward looking studying what will happen in the future; what has already occurred; based on a cohort of subjects having similar characteristics.
