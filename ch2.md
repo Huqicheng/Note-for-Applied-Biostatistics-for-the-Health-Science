@@ -96,9 +96,10 @@ p(ab) = p(a) * p(b)
 for R, learn how to generate random sequence and how to calculate the critical factor
 
 ```r
-dnorm(x, mean = 0, sd = 1, log = FALSE)
-pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+# for Z critical factor
 qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+
+# for random sequence
 rnorm(n, mean = 0, sd = 1)
 ```
 
