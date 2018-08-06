@@ -17,7 +17,7 @@ df <- read.csv( "fecfat.csv", header = TRUE )
 plot(df$response ~ df$explanatory)
 ```
 
-#### 3.2 individual plot & barplot
+#### 3.2 individual plot & baxplot
 
 ```r
 # The linear-regression model will try to predict glucose from physact and assumes
@@ -31,7 +31,7 @@ plot(df$response ~ df$explanatory)
 
 # individual plots for each level of physact
 stripchart(df3$glucose ~ df3$physact, vertical=TRUE)
-# barplot for each level
+# baxplot for each level
 boxplot(df3$glucose ~ df3$physact)
 ```
 
