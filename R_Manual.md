@@ -112,6 +112,9 @@ step(aov(formula=, data=))
 # to fit a model with random effects using Error(explanatory var)
 aov(y ~ fitted + Error(factor(var)))
 
+# to check effects of the anova model
+model.tables(aov.model) # type='effect' as a hint
+
 ```
 
 ## 4.2 Linear Regression
