@@ -132,7 +132,7 @@ linear.mod$fitted.values
 ```
 
 ## 4.3 Logistic Regression
-```
+```r
 # to fit a model
 glm(formula, data, family=binomial)
 # step() to see deviance and select useful explanatory variables
