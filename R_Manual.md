@@ -8,6 +8,9 @@ setwd("your work directory")
 ```r
 # csv
 df <- read.csv( "fecfat.csv", header = TRUE )
+
+# merge tables
+merged.csv <- mutate(df, residual, fitted)
 ```
 
 ## 3. plots
@@ -129,6 +132,11 @@ abline(lm(formula=, data=))
 linear.mod$residuals
 # get fitted values
 linear.mod$fitted.values
+# confidence interval
+confint(linear_model, 'typeNu', level=0.95)
+
+# predict
+predict.60 <- predict(fit, data.frame(AmbientTemp = 60)) 
 ```
 
 ## 4.3 Logistic Regression
@@ -143,6 +151,16 @@ exp(coef[1] + coef[2]*x) / (1 + exp(coef[1] + coef[2]*x))
 exp(coef[1] + coef[2]*x)
 # log odds
 coef[1] + coef[2]*x
+
+# Logistic Regression with Most Likelihood estimator 
+shuttle.logistic1 <- glm(Success~Temperature,family=binomial)
+prob.mle <- exp(-15.043+.232*Temperature)/(1+exp(-15.043+.232*Temperature))
+
+# Logistic Regression with least square estimator 
+ls.coef <- lm(Success~Temperature)$coef
+prob.ls <- exp(ls.coef[1]+ls.coef[2]*Temperature)/(1+exp(ls.coef[1]+ls.coef[2]*Temperature))
+
+# Wald’s test is often used to test the significance of logistic regression coefficients
 ```
 
 ## 4.4 survival analysis
@@ -153,4 +171,61 @@ KM.model <<- survfit( Surv( time = SurvivalDays, event = IsNotCensored ) ~ 1 )
 KM.model <<- survfit( Surv( time = SurvivalDays, event = IsNotCensored ) ~ ClinicNumber )
 print( summary( KM.model ) )
 ```
+
+## 4.5 Anova, two sample t-test, linear regression
+The mean responses (and thus the random error terms) of all three models are identical. All three models describe two populations with the same variances, but possibly different means. In each model, the assumptions about the random errors are the same (normal with mean zero and variance. 2 ). Thus, the p-value must also be identical for all three models. It is not obvious why the square of a t-distributed statistic should have an F-distribution (a proof of that requires a bit of statistical theory), but when the model assumptions are the same, it is comforting that either test statistic provides the same p-value.
+
+## 4.6 Random sampling & allocation
+ Random sampling (selecting units randomly from a larger well-defined population) is not the same as random allocation (randomly assigning treatments to units).
+
+ Random sampling and random allocation can be used to convert unplanned systematic variability into random variability. For example, in the game study, the subjects’ natural ability may bias the results if more talented subjects tend to play one game type over the other. However, if we randomly allocate subjects to a game type, we can expect each group to have an equivalent number of talented subjects. In addition, the variability in natural abilities now tends to look like the random variability that can be modeled with the error term.
+ 
+ 
+ ## 4.7 Simulation for p-value
+```r
+reps <- 10000
+results <- numeric(reps) 
+cancer.cells <- c(rep("M",24),rep("B",13))
+
+for (i in 1:reps) {
+  results[i] <- sum(sample(cancer.cells,21, replace = FALSE)=="M")
+  }
+ sum(results>=17)/reps
+
+or 
+
+trails <- 10000
+count <- sapply(1:trails, function(x){
+  sum_m <-sum(sample(a,21, replace = FALSE))
+    })
+
+```
+
+## 4.8 Model Selection
+```r
+with( df.corrected, {
+    explanatories <- cbind( Age, Height, 
+        Neck, Chest, Thigh, 
+        Knee, Ankle, Biceps, Forearm, Wrist )
+    exp.names <- c( "Age", "Height", 
+        "Neck", "Chest", "Thigh", 
+        "Knee", "Ankle", "Biceps", "Forearm", "Wrist" )
+    leaps.result <<- leaps::leaps( explanatories, PCTBF, method = "adjr2", names = exp.names, nbest = 2 )
+    cat( "Size", "AdjR2", exp.names, sep = "\t" )
+    cat( "\n" )
+    sapply( 1:length( leaps.result$size ), function( i ) {
+        cat( leaps.result$size[ i ],
+            round( leaps.result$adjr2[ i ], digits = 3 ),
+            leaps.result$which[ i, ], "\n", sep = "\t" ) } )
+} )
+
+
+require(leaps)
+full.data=cbind(Cars$Mileage,Cars$Cyl,Cars$Liter,Cars$Doors,Cars$Cruise,Cars$Sound,Cars$Leather)
+
+best.lm <- leaps(full.data,Cars$Price, method = "adjr2", names =c('Mileage','Cyl','Liter','Doors','Cruise','Sound','Leather'), nbest=3)
+
+data1 = cbind(best.lm$which,best.lm$adjr2)
+```
+
 
